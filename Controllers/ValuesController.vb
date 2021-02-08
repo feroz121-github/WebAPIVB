@@ -8,10 +8,23 @@ Public Class ValuesController
     Inherits ApiController
 
     ' GET api/values
-    Public Function GetMT760Values(<FromUri> ByVal mt760 As MSG_MT760, ByVal wish As String) As Boolean
-        Dim a As String = Nothing
-        Return Nothing
+
+    Public Function GetValue(ByVal id As Integer) As String
+        Return id.ToString()
     End Function
+
+    Public Function GetValue(<FromUri()> ByVal mt760 As MSG_MT760) As List(Of Errors)
+        Dim a = 10
+        Dim errors = New Errors()
+        errors.VField = "Name"
+        errors.VError = "Name cannot be more then 20 characters long"
+
+        Dim lstErrors As List(Of Errors) = New List(Of Errors)
+        lstErrors.Add(errors)
+
+        Return lstErrors
+    End Function
+
     Public Function GetValues(<FromUri> ByVal person As Person, ByVal msgType As String) As List(Of Errors)
 
         Dim name = person.Name
@@ -80,14 +93,19 @@ Public Class ValuesController
         Return firstName + lastName
     End Function
 
-    Public Function GetValue(ByVal id As Integer) As String
-        Return id.ToString()
-    End Function
 
     ' POST api/values
-    Public Sub PostValue(<FromBody()> ByVal value As String)
+    Public Function PostValue(<FromBody()> ByVal mt760 As MSG_MT760) As List(Of Errors)
+        Dim a = 10
+        Dim errors = New Errors()
+        errors.VField = "Name"
+        errors.VError = "Name cannot be more then 20 characters long"
 
-    End Sub
+        Dim lstErrors As List(Of Errors) = New List(Of Errors)
+        lstErrors.Add(errors)
+
+        Return lstErrors
+    End Function
 
     ' PUT api/values/5
     Public Sub PutValue(ByVal id As Integer, <FromBody()> ByVal value As String)
@@ -98,10 +116,6 @@ Public Class ValuesController
     Public Sub DeleteValue(ByVal id As Integer)
 
     End Sub
-
-    Public Function sum(ByVal a, ByVal b) As Int32
-        Return a + b
-    End Function
 
 End Class
 

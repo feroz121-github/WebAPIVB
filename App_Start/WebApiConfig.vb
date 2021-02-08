@@ -20,12 +20,6 @@ Public Module WebApiConfig
             defaults:=New With {.id = RouteParameter.Optional}
         )
 
-        config.Routes.MapHttpRoute(
-            name:="MultiApi",
-            routeTemplate:="api/{controller}/{firstName}/{lastName}",
-            defaults:=New With {.firstName = RouteParameter.Optional, .lastName = RouteParameter.Optional}
-        )
-
         config.Formatters.JsonFormatter.SupportedMediaTypes.Add(New MediaTypeHeaderValue("text/html"))
 
     End Sub
