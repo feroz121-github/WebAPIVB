@@ -95,7 +95,19 @@ Public Class ValuesController
 
 
     ' POST api/values
-    Public Function PostValue(<FromBody()> ByVal mt760 As MSG_MT760) As List(Of Errors)
+    'Public Function PostValue(<FromBody()> ByVal mt760 As MSG_MT760) As List(Of Errors)
+    '    Dim a = 10
+    '    Dim errors = New Errors()
+    '    errors.VField = "Name"
+    '    errors.VError = "Name cannot be more then 20 characters long"
+
+    '    Dim lstErrors As List(Of Errors) = New List(Of Errors)
+    '    lstErrors.Add(errors)
+
+    '    Return lstErrors
+    'End Function
+
+    Public Function GetValue(<FromUri()> ByVal tags As TagClass, ByVal source As String) As List(Of TagClass)
         Dim a = 10
         Dim errors = New Errors()
         errors.VField = "Name"
@@ -104,7 +116,33 @@ Public Class ValuesController
         Dim lstErrors As List(Of Errors) = New List(Of Errors)
         lstErrors.Add(errors)
 
-        Return lstErrors
+        Return Nothing
+    End Function
+
+
+    'Public Function PostValue(<FromBody()> ByVal tags As List(Of TagClass)) As List(Of TagClass)
+    '    Dim a = 10
+    '    Dim errors = New Errors()
+    '    errors.VField = "Name"
+    '    errors.VError = "Name cannot be more then 20 characters long"
+
+    '    Dim lstErrors As List(Of Errors) = New List(Of Errors)
+    '    lstErrors.Add(errors)
+
+    '    Return Nothing
+    'End Function
+
+    'Not more than 16 characters
+    Public Function Validate_Tag20() As String
+
+        Return Nothing
+    End Function
+
+    'user provided a value that is not a number with decimal places. 
+    'The decimal delimiter can either be a '.' or ','.
+    Public Function Validate_Tag36() As String
+
+        Return Nothing
     End Function
 
     ' PUT api/values/5
