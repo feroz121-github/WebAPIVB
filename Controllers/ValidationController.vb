@@ -1,6 +1,8 @@
 ﻿Imports System.Net
 Imports System.Web.Http
+Imports System.Web.Http.Cors
 
+<EnableCors("*", "*", "*")>
 Public Class ValidationController
     Inherits ApiController
 
@@ -19,7 +21,16 @@ Public Class ValidationController
     Public Function PostValue(<FromBody()> ByVal tags As List(Of TagClass)) As List(Of TagClass)
 
         For Each tag In tags
-            Validate(tag.ValidationFunction, tag.Tag, tag.Value)
+            Dim a = Validate(tag.ValidationFunction, tag.Tag, tag.Value)
+
+            If a IsNot Nothing Then
+                Dim context As APIContext = New APIContext()
+                Dim tagRecord As TagClass = New TagClass
+
+                tagRecord = tag
+                context.TagData.Add(tag)
+                context.SaveChanges()
+            End If
         Next
 
         Return Nothing
@@ -27,10 +38,10 @@ Public Class ValidationController
 
     Public Function Validate(ByVal ValidationFunction As String, ByVal Tag As String, ByVal Value As Object) As String
 
-        Select Case ValidationFunction
-            Case "Tag20"
+        Select Case Tag
+            Case "20"
                 Return Validate_Tag20(Tag, Value)
-            Case "Tag36"
+            Case "36"
                 Return Validate_Tag36(Tag, Value)
         End Select
 
