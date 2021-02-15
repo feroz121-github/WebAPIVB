@@ -20,46 +20,22 @@ Public Class ValidationController
 
     Public Function PostValue(<FromBody()> ByVal tags As List(Of TagClass)) As List(Of TagClass)
 
-        For Each tag In tags
-            Dim a = Validate(tag.ValidationFunction, tag.Tag, tag.Value)
-
-            If a IsNot Nothing Then
-                Dim context As APIContext = New APIContext()
-                Dim tagRecord As TagClass = New TagClass
-
-                tagRecord = tag
-                context.TagData.Add(tag)
-                context.SaveChanges()
-            End If
-        Next
-
-        Return Nothing
+        Dim objValidate As Validate = New Validate()
+        Try
+            For Each tag In tags
+                CallByName(objValidate, tag.ValidationFunction, CallType.Method, tag)
+            Next
+            Return Nothing
+        Catch ex As Exception
+            Dim TagError As TagClass = New TagClass()
+            Dim TagErrorList As List(Of TagClass) = New List(Of TagClass)
+            TagError.VError = ex.Message
+            TagErrorList.Add(TagError)
+            Return TagErrorList
+        End Try
     End Function
 
-    Public Function Validate(ByVal ValidationFunction As String, ByVal Tag As String, ByVal Value As Object) As String
 
-        Select Case Tag
-            Case "20"
-                Return Validate_Tag20(Tag, Value)
-            Case "36"
-                Return Validate_Tag36(Tag, Value)
-        End Select
 
-        Return Nothing
-    End Function
-
-    Public Function Validate_Tag20(ByVal Tag As String, ByVal Value As Object) As String
-        If Value.Length <> 16 Then
-            Return "Undertaking number should be 16 characters"
-        End If
-        Return ""
-    End Function
-
-    Public Function Validate_Tag36(ByVal Tag As String, ByVal Value As Object) As String
-        If (Not Convert.ToString(Value).Contains(".")) Then
-            Return "Exchange rate should contain a decimal place"
-        End If
-        Return ""
-    End Function
 
 End Class

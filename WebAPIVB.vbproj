@@ -278,6 +278,7 @@
     <Compile Include="Models\Errors.vb" />
     <Compile Include="Models\MSG_MT760.vb" />
     <Compile Include="Models\Person.vb" />
+    <Compile Include="Module1.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -295,6 +296,7 @@
     </Compile>
     <Compile Include="Controllers\HomeController.vb" />
     <Compile Include="Controllers\ValuesController.vb" />
+    <Compile Include="Validate.vb" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="My Project\Resources.resx">

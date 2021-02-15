@@ -135,3 +135,7 @@ C:\Users\Feroz\source\repos\WebAPIVB\bin\System.Numerics.Vectors.xml
 C:\Users\Feroz\source\repos\WebAPIVB\bin\System.Runtime.CompilerServices.Unsafe.xml
 C:\Users\Feroz\source\repos\WebAPIVB\bin\System.Threading.Tasks.Extensions.xml
 C:\Users\Feroz\source\repos\WebAPIVB\obj\Debug\WebAPIVB.vbprojAssemblyReference.cache
+C:\Users\Feroz\source\repos\WebAPIVB\bin\Microsoft.EntityFrameworkCore.Relational.dll
+C:\Users\Feroz\source\repos\WebAPIVB\bin\Oracle.EntityFrameworkCore.dll
+C:\Users\Feroz\source\repos\WebAPIVB\bin\Oracle.ManagedDataAccess.dll
+C:\Users\Feroz\source\repos\WebAPIVB\bin\Microsoft.EntityFrameworkCore.Relational.xml
