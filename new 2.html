@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+	<html>
+		<head>
+			<style type="text/css">
+				input[type="text"]{
+				display:block;
+				margin-bottom:10px;
+				}
+			</style>
+			<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+			<script>
+				$(document).ready(function(){
+					    console.log('gh');
+					    $("input").change(function(){
+						     var pId = $(this).parent().attr("id");  
+							 var ppId = $(this).parent().parent().attr("id");
+							 
+							 var dd = $(this).parents("fieldset").find("span").innerHtml
+							 console.log(dd);
+							 
+							 
+							 var pTagId = $(this).parent().parent().find("fieldset").parent("div").attr("id");
+							 var ppTagId = $(this).parent().parent().parent().find("fieldset").parent("div").attr("id");
+							 
+							 if(pId!=undefined && $(this).parent().attr("id").indexOf("pnl") > -1)
+							 {
+							     $(this).parent().children().each(function(){
+								   console.log($(this).val());
+								 });
+							 }
+							 else if(ppId!=undefined && $(this).parent().parent().attr("id").indexOf("pnl") > -1)
+							 {
+								$(this).parent().parent().children().children().each(function(){
+								   console.log($(this).val());
+								 });		
+							 }
+						});
+					});
+</script>
+		</head>
+		<body>
+			<div id="tag_24">
+				<fieldset style="visibility:hidden">
+					<span>
+						24
+					</span>
+				</fieldset>
+				<div id="pnl_1">
+					<span>
+						Name
+					</span>
+					<input type="text"/>
+					<span>
+						Address
+					</span>
+					<input type="text"/>
+					<input type="text"/>
+					<input type="text"/>
+				</div>
+			</div>
+			<br/>
+			<div id="tag_34">
+				<fieldset style="visibility:hidden">
+					<span>
+						34
+					</span>
+				</fieldset>
+				<div id="pnl_2">
+					<div>
+						<span>
+							Country
+						</span>
+						<input type="text"/>
+					</div>
+					<div>
+						<span>
+							Place
+						</span>
+						<input type="text"/>
+					</div>
+				</div>
+			</div>
+		</body>
+	</html>
+	
