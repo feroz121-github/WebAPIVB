@@ -10,30 +10,104 @@
 			<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 			<script>
 				$(document).ready(function(){
-					    console.log('gh');
-					    $("input").change(function(){
-						     var pId = $(this).parent().attr("id");  
-							 var ppId = $(this).parent().parent().attr("id");
+					    //console.log('gh');
+					    <!-- $("input").change(function(){ -->
+						     <!-- var pId = $(this).parent().attr("id");   -->
+							 <!-- var ppId = $(this).parent().parent().attr("id"); -->
 							 
-							 var dd = $(this).parents("fieldset").find("span").innerHtml
-							 console.log(dd);
+							 <!-- var dd = $(this).parents("fieldset").find("span").innerHtml -->
+							 <!-- console.log(dd); -->
 							 
 							 
-							 var pTagId = $(this).parent().parent().find("fieldset").parent("div").attr("id");
-							 var ppTagId = $(this).parent().parent().parent().find("fieldset").parent("div").attr("id");
+							 <!-- var pTagId = $(this).parent().parent().find("fieldset").parent("div").attr("id"); -->
+							 <!-- var ppTagId = $(this).parent().parent().parent().find("fieldset").parent("div").attr("id"); -->
 							 
-							 if(pId!=undefined && $(this).parent().attr("id").indexOf("pnl") > -1)
-							 {
-							     $(this).parent().children().each(function(){
-								   console.log($(this).val());
-								 });
-							 }
-							 else if(ppId!=undefined && $(this).parent().parent().attr("id").indexOf("pnl") > -1)
-							 {
-								$(this).parent().parent().children().children().each(function(){
-								   console.log($(this).val());
-								 });		
-							 }
+							 <!-- if(pTagId!=undefined) -->
+							 <!-- { -->
+							    
+							 <!-- } -->
+							 
+							 <!-- if(pId!=undefined && $(this).parent().attr("id").indexOf("pnl") > -1) -->
+							 <!-- { -->
+							     <!-- $(this).parent().children().each(function(){ -->
+								   <!-- console.log($(this).val()); -->
+								 <!-- }); -->
+							 <!-- } -->
+							 <!-- else if(ppId!=undefined && $(this).parent().parent().attr("id").indexOf("pnl") > -1) -->
+							 <!-- { -->
+								<!-- $(this).parent().parent().children().children().each(function(){ -->
+								   <!-- console.log($(this).val()); -->
+								 <!-- });		 -->
+							 <!-- } -->
+						<!-- }); -->
+						
+						<!-- $("input").focusout(function(){ -->
+						   <!-- console.log($(this).parent().attr("id")); -->
+						<!-- }); -->
+						
+						<!-- $("input").blur(function(){ -->
+						   <!-- console.log("blur",$(this).parent().attr("id")); -->
+						<!-- }); -->
+						
+						<!-- $("input").focusin(function(){ -->
+						   <!-- console.log("focusin",$(this).parent().attr("id")); -->
+						<!-- }); -->
+						
+						<!-- $("#pnl_1").change(function(){ -->
+						   <!-- console.log("change",$(this).parent().attr("id")); -->
+						<!-- }); -->
+						
+						<!-- $(".pnl input").focusout(function(e){ -->
+						<!-- if ($(this).contains(e.relatedTarget)) { -->
+						     <!-- console.log("in current tag"); -->
+						   <!-- } -->
+						   <!-- else -->
+						   <!-- { -->
+						      <!-- console.log('i am out') -->
+						   <!-- } -->
+						<!-- }); -->
+						
+						<!-- var tag=""; -->
+						<!-- var element = document.getElementsByClassName("pnl")[0]; -->
+						   <!-- element.addEventListener('focusout', function(event) { -->
+							<!-- if (element.contains(event.relatedTarget)) { -->
+							<!-- // don't react to this -->
+							<!-- console.log($(element).attr("id")); -->
+							 <!-- return; -->
+							<!-- } -->
+							
+							<!-- console.log('outside'); -->
+								<!-- // do something -->
+						<!-- }); -->
+						
+						<!-- $(".pnl input").change(function(){ -->
+						   
+						  <!-- //console.log(1,$(this).parent().attr("class")); -->
+						  <!-- $(this).parent().addClass("cPanel"); -->
+						  <!-- //console.log(2,$(this).parent().attr("class")); -->
+						  <!-- var element = document.getElementsByClassName("cPanel")[0]; -->
+						  <!-- //console.log(element); -->
+						  
+						  <!-- this.addEventListener('focusout', function(event) { -->
+						     <!-- if (element.contains(event.relatedTarget)) { -->
+							    <!-- console.log('inside'); -->
+								<!-- return -->
+							 <!-- } -->
+							 <!-- else -->
+							 <!-- { -->
+							    <!-- console.log('outside'); -->
+								<!-- $(this).removeClass("cPanel"); -->
+							 <!-- } -->
+						  <!-- }); -->
+						<!-- }); -->
+						
+						$(".pnl").focusout(function (e) {
+						    //console.log($(this)); 
+							if ($(this).has(e.relatedTarget)) {
+								console.log('inside');
+							    return;
+							}
+							console.log('outside')
 						});
 					});
 </script>
@@ -45,7 +119,7 @@
 						24
 					</span>
 				</fieldset>
-				<div id="pnl_1">
+				<div id="pnl_1" class="pnl">
 					<span>
 						Name
 					</span>
@@ -65,19 +139,15 @@
 						34
 					</span>
 				</fieldset>
-				<div id="pnl_2">
-					<div>
+				<div id="pnl_2" class="pnl">
 						<span>
 							Country
 						</span>
 						<input type="text"/>
-					</div>
-					<div>
 						<span>
 							Place
 						</span>
 						<input type="text"/>
-					</div>
 				</div>
 			</div>
 		</body>
