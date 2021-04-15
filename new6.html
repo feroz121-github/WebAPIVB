@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>event.target demo</title>
+  <style>
+  span, strong, p {
+    padding: 8px;
+    display: block;
+    border: 1px solid #999;
+  }
+  </style>
+  <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
+</head>
+<body>
+
+  
+  <div id="pnl1">
+  	<input type="text" class="pnl1 1"/> <br/>
+  	<input type="text" class="pnl1 2"/>  <br/>
+  </div>
+  <br/>
+  <div id="pnl2">
+  	<input type="text" class="pnl2 3"/>  <br/>
+  	<input type="text" class="pnl2 4"/>  <br/>
+  </div>
+</div>
+ 
+<script>
+//tabindex="-1"
+var curId=null;
+$("div input").focusin(function(e)
+{
+   console.log('focusin')
+   <!-- if(e.relatedTarget!=null){ -->
+      <!-- console.log($(this).parent().attr('id'), e.relatedTarget.parentNode.id);  -->
+	  
+	  <!-- if(e.relatedTarget.parentNode.id!=$(this).parent().attr('id')) -->
+	  <!-- { -->
+	     <!-- var rId = e.relatedTarget.parentNode.id; -->
+		 <!-- $("#" + rId).children("input[type='text']").each(function(){ console.log($(this).val()) }); -->
+	  <!-- } -->
+   <!-- } -->
+   <!-- if(curId == null) -->
+   <!-- { -->
+     <!-- curId = $(this).parent().attr('id'); -->
+   <!-- } -->
+   <!-- if(e.relatedTarget!=null && e.relatedTarget.parentNode.id!=curId){ -->
+      
+       <!-- var rId = e.relatedTarget.parentNode.id; -->
+		<!-- curId = rId; -->
+		<!-- $("#" + rId).children("input[type='text']").each(function(){ console.log(1,$(this).val()) }); -->
+	 <!-- } -->
+});
+
+$("div input").focusout(function(e)
+{
+    console.log('focusout');   
+});
+
+
+
+function callJs()
+{
+   
+    var element = document.getElementsByClassName("present")[0];
+	//console.log(element);
+	if(element!=undefined)
+	{
+    element.addEventListener('focusout', function(event) {
+    	//console.log();
+		if (element.contains(event.relatedTarget)) {
+     	console.log(i++,'inside');
+     	return;
+    	}
+        console.log('outside');
+		$(element).removeClass('present');
+    });
+	}
+}
+
+</script>
+ 
+</body>
+</html>
